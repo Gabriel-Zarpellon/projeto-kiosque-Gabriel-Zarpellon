@@ -6,9 +6,7 @@ def calculate_tab(tab: list) -> dict:
     for item in tab:
         id = item['_id']
         amount = item['amount']
-        for product in products:
-            if product['_id'] == id:
-                price = product['price']
-                total = round(total + (price * amount), 2)
+        product = list(product for product in products if product['_id'] == id)
+        total = round(total + (product[0]['price'] * amount), 2)
     subtotal = {'subtotal': f'${total}'}
     return subtotal
