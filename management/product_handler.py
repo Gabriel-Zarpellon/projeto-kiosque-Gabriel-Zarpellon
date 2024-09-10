@@ -2,18 +2,27 @@ from menu import products
 from operator import itemgetter
 
 
-def get_product_by_id(id: int):
+def get_product_by_id(id: int) -> dict:
+    if type(id) is not int:
+        raise TypeError('product id must be an int')
+
     for product in products:
         if product['_id'] == id:
             return product
+
     return {}
 
 
-def get_products_by_type(type: str):
+def get_products_by_type(search_type: str) -> list:
+    if type(search_type) is not str:
+        raise TypeError('product type must be a str')
+
     found_products = []
+
     for product in products:
-        if product['type'] == type:
+        if product['type'] == search_type:
             found_products.append(product)
+
     return found_products
 
 
